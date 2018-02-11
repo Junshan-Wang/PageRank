@@ -46,7 +46,7 @@ int main()
 {
 	char buf[1000] = { 0 };
 
-	/*¶ÁÈëÃ¿¸öpaperµÄ³ö¶È£¬¼ÆËãpÖµ*/
+	/*è¯»å…¥æ¯ä¸ªpaperçš„å‡ºåº¦ï¼Œè®¡ç®—på€¼*/
 	ifstream in_outcite("C://Users/user/Documents/Visual Studio 2015/Projects/PageRank/release/2013/paper_outcites.txt");
 	if (!in_outcite.is_open())
 	{
@@ -71,7 +71,7 @@ int main()
 		N++;		
 	}
 
-	/*¶ÁÈëpaperÖ®¼äµÄÒıÓÃ¹ØÏµ£¬¼ÇÂ¼µ½p¾ØÕóÖĞ*/
+	/*è¯»å…¥paperä¹‹é—´çš„å¼•ç”¨å…³ç³»ï¼Œè®°å½•åˆ°pçŸ©é˜µä¸­*/
 	ifstream in_relationship("C://Users/user/Documents/Visual Studio 2015/Projects/PageRank/release/2013/acl.txt");
 	if (!in_relationship.is_open())
 	{
@@ -100,11 +100,11 @@ int main()
 		inlink[endNUM].n++;
 	}
 
-	/*³õÊ¼»¯Pagerank*/
+	/*åˆå§‹åŒ–Pagerank*/
 	for (int i = 0; i < N; ++i)	Pagerank[i] = 1 / (double)N;
 
-	/*µü´ú¼ÆËãPagerankÖµ£¬Pagerank=alpha*Pagerank+(1-alpha)/n */
-	/*Í£Ö¹Ìõ¼şÎªÃ¿¸öauthorµÄPagerank¶¼Ğ¡ÓÚ0.0000001*/
+	/*è¿­ä»£è®¡ç®—Pagerankå€¼ï¼ŒPagerank=alpha*Pagerank+(1-alpha)/n */
+	/*åœæ­¢æ¡ä»¶ä¸ºæ¯ä¸ªauthorçš„Pagerankéƒ½å°äº0.0000001*/
 	while (1)
 	{
 		double tmp[25000] = { 0 };
@@ -127,7 +127,7 @@ int main()
 					
 	}
 
-	/*PagerankÅÅĞò*/
+	/*Pagerankæ’åº*/
 	int ID[19000] = { 0 };
 	for (int i = 0; i < N; ++i) ID[i] = i;
 	for (int i = 0; i < N; ++i)
@@ -139,7 +139,7 @@ int main()
 				temp = ID[j];	ID[j] = ID[j + 1];	ID[j + 1] = temp;
 			}
 
-	/*¶ÁÈëpaperÃû×Ö*/
+	/*è¯»å…¥paperåå­—*/
 	ifstream inFile("C://Users/user/Documents/Visual Studio 2015/Projects/PageRank/release/2013/paper_ids.txt");
 	if (!inFile.is_open())
 	{
@@ -161,13 +161,13 @@ int main()
 			paperName[id2num[id]][j] = buf[j+delta];
 	}
 	
-	/*Êä³öÅÅĞòºóµÄpaperÃû×Ö¼°ÆäPagerankÖµ*/
+	/*è¾“å‡ºæ’åºåçš„paperåå­—åŠå…¶Pagerankå€¼*/
 	ofstream outFile("C://Users/user/Documents/Visual Studio 2015/Projects/PageRank/paperPagerank.txt");
 	for (int i = 0; i < N; ++i)
 		outFile << paperName[ID[i]] << "\t" << Pagerank[i] << endl;
 
 	/*
-	//Í³¼Æ
+	//ç»Ÿè®¡
 	int cal[6] = { 0 };
 	for (int i = 0; i < N; ++i)
 	{
