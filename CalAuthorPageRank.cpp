@@ -16,7 +16,7 @@ int id2num[19000] = { 0 };
 
 int main()
 {
-	/*¶ÁÈëauthorÃû×ÖºÍid£¬×¢Òâ£¬authorID²¢²»ÊÇÁ¬ĞøµÄ£¬¹²17551¸öauthor£¬µ«ÊÇ×î´óµÄidÎª18648*/
+	/*è¯»å…¥authoråå­—å’Œidï¼Œæ³¨æ„ï¼ŒauthorIDå¹¶ä¸æ˜¯è¿ç»­çš„ï¼Œå…±17551ä¸ªauthorï¼Œä½†æ˜¯æœ€å¤§çš„idä¸º18648*/
 	ifstream inFile("C://Users/user/Documents/Visual Studio 2015/Projects/PageRank/release/2013/author_ids.txt");
 	if (!inFile.is_open())
 	{
@@ -29,13 +29,13 @@ int main()
 		int id;
 		char name[100] = { 0 };
 		inFile >> id;
-		inFile.get();						//¶ÁÈëid
-		inFile.getline(name, 100);			//¶ÁÈëauthorÃû×Ö
-		id2num[id] = i;						//¸ø²»Á¬ĞøµÄidÖØĞÂ°²ÅÅÁ¬ĞøµÄIDºÅ£¨1-17551£©
+		inFile.get();						//è¯»å…¥id
+		inFile.getline(name, 100);			//è¯»å…¥authoråå­—
+		id2num[id] = i;						//ç»™ä¸è¿ç»­çš„idé‡æ–°å®‰æ’è¿ç»­çš„IDå·ï¼ˆ1-17551ï¼‰
 		strcpy_s(authorName[i], name);
 	}
 
-	/*¶ÁÈëauthorÖ®¼äµÄÒıÓÃ¹ØÏµ£¬¼ÇÂ¼µ½¾ØÕópÖĞ*/
+	/*è¯»å…¥authorä¹‹é—´çš„å¼•ç”¨å…³ç³»ï¼Œè®°å½•åˆ°çŸ©é˜µpä¸­*/
 	ifstream in_relationship("C://Users/user/Documents/Visual Studio 2015/Projects/PageRank/release/2013/author_citation_network.txt");
 	if (!in_relationship.is_open())
 	{
@@ -63,11 +63,11 @@ int main()
 			if (p[i][j] == 1) p[i][j] = sum;
 	}
 	
-	/*³õÊ¼»¯PagerankÖµ£¬Îª1/n*/
+	/*åˆå§‹åŒ–Pagerankå€¼ï¼Œä¸º1/n*/
 	for (int i = 0; i < n; ++i)	Pagerank[i] = 1 / (double)n;
 
-	/*µü´ú¼ÆËãPagerankÖµ£¬Pagerank=alpha*Pagerank+(1-alpha)/n */
-	/*Í£Ö¹Ìõ¼şÎªÃ¿¸öauthorµÄPagerank¶¼Ğ¡ÓÚ0.00001*/
+	/*è¿­ä»£è®¡ç®—Pagerankå€¼ï¼ŒPagerank=alpha*Pagerank+(1-alpha)/n */
+	/*åœæ­¢æ¡ä»¶ä¸ºæ¯ä¸ªauthorçš„Pagerankéƒ½å°äº0.00001*/
 	while (1)
 	{
 		double tmp[19000] = { 0 };
@@ -87,7 +87,7 @@ int main()
 		if (flag == 0) break;
 	}
 
-	/*PagerankÅÅĞò*/
+	/*Pagerankæ’åº*/
 	int ID[19000] = { 0 };
 	for (int i = 0; i < n; ++i) ID[i] = i;
 	for (int i = 0; i < n; ++i)
@@ -99,7 +99,7 @@ int main()
 				temp = ID[j];	ID[j] = ID[j + 1];	ID[j + 1] = temp;
 			}
 
-	/*Êä³öÅÅĞòºóµÄauthor¼°ÆäPagerankÖµ*/
+	/*è¾“å‡ºæ’åºåçš„authoråŠå…¶Pagerankå€¼*/
 	ofstream outFile("C://Users/user/Documents/Visual Studio 2015/Projects/PageRank/authorPagerank.txt");	
 	if (!outFile.is_open())
 	{
@@ -111,7 +111,7 @@ int main()
 		outFile << authorName[ID[i]] << "\t" << Pagerank[i] << endl;
 
 	/*
-	//Í³¼Æ
+	//ç»Ÿè®¡
 	int cal[6] = { 0 };
 	for (int i = 0; i < n; ++i)
 	{
