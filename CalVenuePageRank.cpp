@@ -14,7 +14,7 @@ float Pagerank[1000] = { 0 };
 int paper2venue[40000000] = { 0 };
 char venueName[1000][1000] = { 0 };
 
-/*¶ÁÈ¡paperµÄID²¢½«Æä×ª»»ÎªĞòºÅ*/
+/*è¯»å–paperçš„IDå¹¶å°†å…¶è½¬æ¢ä¸ºåºå·*/
 int getPaperID(char *buf)
 {
 	int paperID = 0;
@@ -31,8 +31,8 @@ int getPaperID(char *buf)
 
 int main()
 {
-	/*Êı¾İÔ¤´¦Àí£¬ÓÉÓÚÊÇ³õÊ¼ÎÄ¼ş£¬ĞèÒª´¦Àí¿ÕĞĞµÈ¸÷ÖÖÇé¿ö*/
-	/*¶ÁÈëÃ¿Æªpaper¼°ÆäËùÔÚµÄvenue*/
+	/*æ•°æ®é¢„å¤„ç†ï¼Œç”±äºæ˜¯åˆå§‹æ–‡ä»¶ï¼Œéœ€è¦å¤„ç†ç©ºè¡Œç­‰å„ç§æƒ…å†µ*/
+	/*è¯»å…¥æ¯ç¯‡paperåŠå…¶æ‰€åœ¨çš„venue*/
 	ifstream inVenue("C://Users/user/Documents/Visual Studio 2015/Projects/PageRank/release/2012/acl-metadata.txt");
 	if (!inVenue.is_open())
 	{
@@ -83,7 +83,7 @@ int main()
 		inVenue.getline(buf, 1000);
 	}
 
-	/*¶ÁÈëpaperÖ®¼äµÄÒıÓÃ¹ØÏµ£¬µÃµ½venueÖ®¼äµÄÒıÓÃ¹ØÏµ£¬²¢¼ÇÂ¼µ½¾ØÕópÖĞ*/
+	/*è¯»å…¥paperä¹‹é—´çš„å¼•ç”¨å…³ç³»ï¼Œå¾—åˆ°venueä¹‹é—´çš„å¼•ç”¨å…³ç³»ï¼Œå¹¶è®°å½•åˆ°çŸ©é˜µpä¸­*/
 	ifstream in_relationship("C://Users/user/Documents/Visual Studio 2015/Projects/PageRank/release/2012/acl.txt");
 	if (!in_relationship.is_open())
 	{
@@ -117,11 +117,11 @@ int main()
 			if (p[i][j] !=0) p[i][j] = sum*p[i][j];
 	}
 
-	/*³õÊ¼»¯Pagerank*/
+	/*åˆå§‹åŒ–Pagerank*/
 	for (int i = 0; i < N; ++i)	Pagerank[i] = 1 / (double)N;
 
-	/*µü´ú¼ÆËãPagerankÖµ£¬Pagerank=alpha*Pagerank+(1-alpha)/n */
-	/*Í£Ö¹Ìõ¼şÎªÃ¿¸öauthorµÄPagerank¶¼Ğ¡ÓÚ0.00001*/
+	/*è¿­ä»£è®¡ç®—Pagerankå€¼ï¼ŒPagerank=alpha*Pagerank+(1-alpha)/n */
+	/*åœæ­¢æ¡ä»¶ä¸ºæ¯ä¸ªauthorçš„Pagerankéƒ½å°äº0.00001*/
 	while (1)
 	{
 		double tmp[1000] = { 0 };
@@ -143,7 +143,7 @@ int main()
 		if (flag == 0) break;
 	}
 
-	/*PagerankÅÅĞò*/
+	/*Pagerankæ’åº*/
 	int ID[1000] = { 0 };
 	for (int i = 0; i < N; ++i) ID[i] = i;
 	for (int i = 0; i < N; ++i)
@@ -155,7 +155,7 @@ int main()
 				temp = ID[j];	ID[j] = ID[j + 1];	ID[j + 1] = temp;
 			}
 
-	/*Êä³öÅÅĞòºóµÄvenue¼°ÆäPagerank*/
+	/*è¾“å‡ºæ’åºåçš„venueåŠå…¶Pagerank*/
 	ofstream outFile("C://Users/user/Documents/Visual Studio 2015/Projects/PageRank/venuePagerank.txt");
 	if (!outFile.is_open())
 	{
@@ -169,7 +169,7 @@ int main()
 	}
 
 	/*
-	//Í³¼Æ
+	//ç»Ÿè®¡
 	int cal[6] = { 0 };
 	for (int i = 0; i < N; ++i)
 	{
